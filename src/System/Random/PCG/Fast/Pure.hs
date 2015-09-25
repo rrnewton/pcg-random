@@ -154,7 +154,7 @@ save (G a) = readByteArray a 0
 -- | Restore a 'Gen' from a 'Seed'.
 restore :: PrimMonad m => FrozenGen -> m (Gen (PrimState m))
 restore f = do
-  a <- newByteArray 8
+  a <- newByteArray 48
   writeByteArray a 0 f
   return $! G a
 {-# INLINE restore #-}
@@ -260,4 +260,3 @@ instance RandomGen FrozenGen where
       P s2 w2 = pair s1
       P s3 w3 = pair s2
       w4 = output s3 -- abandon old state
-
